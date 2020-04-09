@@ -1,22 +1,42 @@
-#include <SFML/Graphics.hpp>
+#include"Main_pvz.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    //Primitive Data Types
+    bool Show_once_zombies = true;
+    bool car_stop = true;
 
+    RenderWindow window(VideoMode(200, 200), "Plants vs Zombies",Style::Fullscreen);
+    window.setFramerateLimit(60);
+    
+    //User Defined Data Type (Classs)
+    //Classes Map
+    Floor floor(window);
+    Car car;
+    
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == Event::Closed)
                 window.close();
         }
+        
+        if (Show_once_zombies)
+        {
+            floor.view_zombies(window);
+            Show_once_zombies = false;
+        }
+        floor.green_floor(window);
 
         window.clear();
-        window.draw(shape);
+
+        floor.display(window);
+        car.display(window);
+        if(car_stop)
+            car.move_car_to_start_game(car_stop);
+        
         window.display();
     }
 

@@ -18,5 +18,22 @@
     <ClCompile Include="Main_pvz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Day\Map\Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day\Map\Car.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main_pvz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Day\Map\Floor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Day\Map\Car.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

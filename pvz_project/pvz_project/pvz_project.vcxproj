@@ -144,7 +144,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Day\Map\Car.cpp" />
+    <ClCompile Include="Day\Map\Floor.cpp" />
     <ClCompile Include="Main_pvz.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Day\Map\Car.h" />
+    <ClInclude Include="Day\Map\Floor.h" />
+    <ClInclude Include="Main_pvz.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
