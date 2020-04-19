@@ -2,6 +2,7 @@
 
 Floor::Floor(RenderWindow& window)
 {
+    z_on_s = new zombies_on_street;
 	T_floor.loadFromFile("../../assets/Day/Map/Background_0.jpg");
 	R_floor.setTexture(&T_floor);
 	R_floor.setSize(Vector2f(1400.f, 767.f));
@@ -14,6 +15,10 @@ Floor::Floor(RenderWindow& window)
 	floatrect.height = 767.f;
 	View view(FloatRect(floatrect.left, floatrect.top, floatrect.width, floatrect.height));
 	window.setView(view);
+
+    T_ChooseCards.loadFromFile("../../assets/Day/Map/SeedBank_1.png");
+    S_ChooseCards.setTexture(T_ChooseCards);
+    S_ChooseCards.setPosition(Vector2f(230.f, 0.f));
 }
 
 void Floor::view_zombies(RenderWindow& window)
@@ -31,10 +36,10 @@ void Floor::view_zombies(RenderWindow& window)
                 wait = false;
                 sleep(seconds(1));
             }
-            float time = clock.getElapsedTime().asMicroseconds();
+            float time = float(clock.getElapsedTime().asMicroseconds());
             clock.restart();
             time = time / 800;
-            currentframe += 0.029 * time;
+            currentframe += float(0.029) * time;
             if (currentframe >= 1)
             {
                 currentframe -= 1;
@@ -62,16 +67,19 @@ void Floor::green_floor(RenderWindow& window)
         {
             window.clear();
             display(window);
+            z_on_s->display_zombie1(window);
+            z_on_s->display_zombie2(window);
+            z_on_s->display_zombie3(window);
             window.display();
             if (wait)
             {
                 wait = false;
                 sleep(seconds(1));
             }
-            float time = clock.getElapsedTime().asMicroseconds();
+            float time = float(clock.getElapsedTime().asMicroseconds());
             clock.restart();
             time = time / 800;
-            currentframe += 0.029 * time;
+            currentframe += float(0.029) * time;
             if (currentframe >= 1)
             {
                 currentframe -= 1;
@@ -91,4 +99,9 @@ void Floor::green_floor(RenderWindow& window)
 void Floor::display(RenderWindow& window)
 {
 	window.draw(R_floor);
+}
+
+void Floor::display_ChooseCards(RenderWindow& window)
+{
+    window.draw(S_ChooseCards);
 }

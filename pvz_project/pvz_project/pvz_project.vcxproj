@@ -146,11 +146,19 @@
   <ItemGroup>
     <ClCompile Include="Day\Map\Car.cpp" />
     <ClCompile Include="Day\Map\Floor.cpp" />
+    <ClCompile Include="Day\Map\zombies_on_street.cpp" />
+    <ClCompile Include="Day\Zombies\Zombies.cpp" />
+    <ClCompile Include="MainMenu\Loading.cpp" />
+    <ClCompile Include="MainMenu\Menu.cpp" />
     <ClCompile Include="Main_pvz.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Day\Map\Car.h" />
     <ClInclude Include="Day\Map\Floor.h" />
+    <ClInclude Include="Day\Map\zombies_on_street.h" />
+    <ClInclude Include="Day\Zombies\Zombies.h" />
+    <ClInclude Include="MainMenu\Loading.h" />
+    <ClInclude Include="MainMenu\Menu.h" />
     <ClInclude Include="Main_pvz.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,6 +3,7 @@
 class Floor
 {
 private:
+	zombies_on_street* z_on_s;
 	//Primitive Data Types
 	float currentframe = 0;
 	bool viewer_zombies;
@@ -12,7 +13,9 @@ private:
 	RectangleShape R_floor;
 	//Textures
 	Texture T_floor;
+	Texture T_ChooseCards;
 	//Sprites
+	Sprite S_ChooseCards;
 	//FloatRect
 	FloatRect floatrect;
 public:
@@ -22,6 +25,7 @@ public:
 	void view_zombies(RenderWindow& window);
 	void green_floor(RenderWindow& window);
 	void display(RenderWindow& window);
+	void display_ChooseCards(RenderWindow& window);
 	//Destructor
 };
 
