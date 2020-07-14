@@ -7,6 +7,11 @@ private:
 	//Primitive Data Types
 	bool ispressed_vaseQuit;
 	bool ispressed_vaseHelp;
+	bool ispressedMessageNew_User;
+	bool ispressed_CreatNewPlayer;
+	short max_hand;
+	static int number_players;
+	string Name_player;
 	//Timer
 	//RectangleShapes
 	RectangleShape R_Menu;
@@ -17,6 +22,10 @@ private:
 	RectangleShape R_MessageQuit;
 	RectangleShape R_btnQuit, R_btnCancel;
 	RectangleShape R_MessageHelp;
+	RectangleShape R_Name;
+	RectangleShape R_ChooseName, R_ChooseName_hover;
+	RectangleShape R_NewUser;
+	RectangleShape R_ListName;
 	//Textures
 	Texture T_Menu;
 	Texture T_StartAdventure, T_StartAdventure_hover;
@@ -26,10 +35,18 @@ private:
 	Texture T_MessageQuit;
 	Texture T_btn;
 	Texture T_MessageHelp;
+	Texture* T_Hand;
+	Texture T_Name;
+	Texture T_ChooseName, T_ChooseName_hover;
+	Texture T_NewUser;
+	Texture T_ListName;
 	//Sprites
+	Sprite* S_Hand;
 	//Font
 	Font font;
 	Font font_1;
+	Font font_ListName;
+	Font font_NamePlayer;
 	//Text
 	Text txt_Quit;
 	Text txt_Help;
@@ -37,6 +54,8 @@ private:
 	Text txt_btnQuit;
 	Text txt_btnCancel;
 	Text txt_MessageQuit_1, txt_MessageQuit_2, txt_MessageQuit_3;
+	Text txt_CreateNewPlayer;
+	Text txt_NamePLayer;
 	//member functions
 	/*------------------------------------------------*/
 	//initialization
@@ -55,28 +74,47 @@ private:
 	void initialization_txtMessageQuit();
 	void initialization_txtMessageBox();
 	void initialization_MessageHelp();
+	void initialization_Hand();
+	void initialization_ScreenName();
+	void initialization_ChooseName();
+	void initialization_NewUser();
+	void initialization_ListName();
 	//Mouse Hover
 	void MouseMoved_Mainbtn(RenderWindow& window, Event& event);
 	void MouseMoved_Vasebtn(RenderWindow& window, Event& event);
 	void MouseMoved_MessageCancel(RenderWindow& window, Event& event);
 	void MouseMoved_MessageQuit(RenderWindow& window, Event& event);
+	void MouseMoved_ChooseName(RenderWindow& window, Event& event);
+	void MouseMoved_CreateNewPlayer(RenderWindow& window, Event& event);
 	//Mouse Pressed
 	bool MousePressed_btnQuit(RenderWindow& window);
 	bool MousePressed_btnCancel(RenderWindow& window);
 	void MousePressed_btnMessageQuit(RenderWindow& window);
 	bool MousePressed_btnHelp(RenderWindow& window);
 	void MousePressed_btnMainMenuHelp(RenderWindow& window);
+	bool MousePressed_btnSartGame(RenderWindow& window, bool& is_pressed);
+	void MousePressed_btnCancel_NewUser(RenderWindow& window);
+	void MousePressed_btnOk_NewUser(RenderWindow& window);
+	void MousePressed_CreateNewPlayer(RenderWindow& window);
 	//display
 	void display_Mainbtn(RenderWindow& window);
 	void display_Vasebtn(RenderWindow& window);
 	void display_MessageQuit(RenderWindow& window);
 	void display_txtMessageQuit(RenderWindow& window);
+	void display_ScreenName(RenderWindow& window);
+	void display_ChooseName(RenderWindow& window);
+	//others
+	void text_enter(Event& event, RenderWindow& window);
 	/*------------------------------------------------*/
 public:
 	//Constructors
 	Menu();
 	//member function
-	void display_MainMenu(RenderWindow& window, Event& event);
+	//Mouse Pressed
+	
+	//display
+	void display_MainMenu(RenderWindow& window, Event& event, bool& is_pressedStart);
+	void display_Hand(RenderWindow& window, int i);
 	//Destructor
 };
 

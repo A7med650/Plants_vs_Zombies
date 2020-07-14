@@ -1,6 +1,6 @@
 #include "Car.h"
 
-Car::Car()
+void Car::initialization_Car()
 {
 	T_car.loadFromFile("../../assets/Day/Map/car.png");
 	for (int i = 0; i < 5; i++)
@@ -10,6 +10,17 @@ Car::Car()
 	S_car[2].setPosition(Vector2f(150.f, 417.f));
 	S_car[3].setPosition(Vector2f(150.f, 544.f));
 	S_car[4].setPosition(Vector2f(150.f, 673.f));
+}
+
+void Car::display_Car(RenderWindow& window)
+{
+	for (int i = 0; i < 5; i++)
+		window.draw(S_car[i]);
+}
+
+Car::Car()
+{
+	initialization_Car();
 }
 
 void Car::move_car_to_start_game(bool& car_stop)
@@ -25,6 +36,5 @@ void Car::move_car_to_start_game(bool& car_stop)
 
 void Car::display(RenderWindow& window)
 {
-	for (int i = 0; i < 5; i++)
-		window.draw(S_car[i]);
+	display_Car(window);
 }

@@ -1,34 +1,43 @@
 #include"Main_pvz.h"
-#include "Day/Map/Floor.h"
+//#include "Day/Map/Floor.h"
+
 
 int main()
 {
-    float CurrentFrame = 0;
     Clock clock;
 
+    //CurrentFrame
+    float CurrentFrame_Z_on_S = 0;
+    float CurrentFrame_Hand = 0;
+    
     //Primitive Data Types
-    bool car_stop = true;
-    bool click_start = true;
+    //bool
+    bool is_car_stop = true;
+    bool is_click_start = true;
+    bool is_pressedStart = true;
+    bool is_setView = true;
+    bool is_click_loading = false;
+    //int
+    int max_hand = 0;
 
     RenderWindow window(VideoMode(200, 200), "Plants vs Zombies",Style::Fullscreen);
     window.setFramerateLimit(60);
-    window.setMouseCursorVisible(false);
+    window.setKeyRepeatEnabled(false);
 
-    View fixed = window.getView();
-    Texture T_Cursor;
-    T_Cursor.loadFromFile("../../assets/Day/MainMenu/Cursor.png");
-    RectangleShape R_Cursor;
-    Sprite S_Cursor(T_Cursor);
-    S_Cursor.setScale(Vector2f(2.5f, 2.5f));
-    
-    //User Defined Data Type (Classs)
+    srand((unsigned int)time(NULL));
+    short r1 = rand() % 3 + 1;
+    short r2 = rand() % 3 + 1;
+
+    //User Defined Data Type (Classes)
     //Classes Map
-    //Floor floor(window);
-    //Car car;
-    //zombies_on_street Z_on_S;
     Loading load;
     Menu MainMenu;
+    Floor floor;
+    zombies_on_street Z_on_S;
+    Car car;
     
+    Z_on_S.random_Zombies();
+
     while (window.isOpen())
     {
         float time = float(clock.getElapsedTime().asMicroseconds());
@@ -41,44 +50,71 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        S_Cursor.setPosition(static_cast<Vector2f>(Mouse::getPosition(window)));
         
-        /*if (CurrentFrame<=80)
-        {
-            window.clear();
-            floor.view_zombies(window);
-            floor.display(window);
-            Z_on_S.display_zombie1(window);
-            Z_on_S.display_zombie2(window);
-            Z_on_S.display_zombie3(window);
-            window.display();
-            CurrentFrame += float(0.005) * time;
-            continue;
-        }*/
-       /* if(CurrentFrame>=30)
-            floor.green_floor(window);*/
-
         window.clear();
-        
-        if (click_start)
+
+        if (!is_pressedStart && CurrentFrame_Z_on_S <= 80 && max_hand >= 6)
         {
-            load.display(window);
-            load.display_Loading(window);
-            click_start = load.button_click_start(window);
-            window.setView(fixed);
-            window.draw(S_Cursor);
-            window.display();
-            continue;
+            if (is_setView)
+            {
+                is_setView = false;
+                floor.set_view(window);
+            }
+
+            if (CurrentFrame_Z_on_S <= 80)
+            {
+                window.clear();
+                floor.view_zombies(window);
+                floor.display(window);
+                Z_on_S.display(window);
+                window.display();
+                CurrentFrame_Z_on_S += float(0.005) * time;
+                continue;
+            }
         }
-        MainMenu.display_MainMenu(window,event);
-       /* floor.display(window);
-        car.display(window);
-        floor.display_ChooseCards(window);
-        if(car_stop)
-            car.move_car_to_start_game(car_stop);*/
+
         
-        window.setView(fixed);
-        window.draw(S_Cursor);
+        if (is_pressedStart)
+        {
+            if (is_click_start)
+            {
+                load.display(window);
+                load.display_Loading(window, is_click_loading);
+                if(is_click_loading)
+                    is_click_start = load.button_click_start(window);
+                window.display();
+                continue;
+            }
+            MainMenu.display_MainMenu(window, event, is_pressedStart);
+        }
+
+        if (!is_pressedStart && max_hand < 6)
+        {
+            if (CurrentFrame_Hand <= 25)
+            {
+                MainMenu.display_MainMenu(window, event, is_pressedStart);
+                MainMenu.display_Hand(window, max_hand);
+                CurrentFrame_Hand += float(0.02) * time;
+            }
+            if (CurrentFrame_Hand > 25 && max_hand < 6)
+            {
+                CurrentFrame_Hand = 0;
+                max_hand++;
+            }
+            if (max_hand >= 6)
+                sleep(seconds(4.f));
+        }
+        
+        if (!is_pressedStart && max_hand >= 6)
+        {
+            floor.green_floor(window);
+            floor.display(window);
+            car.display(window);
+            floor.display_ChooseCards(window);
+            if (is_car_stop)
+                car.move_car_to_start_game(is_car_stop);
+        }
+
         window.display();
     }
 

@@ -11,8 +11,7 @@ Loading::Loading()
 	R_LoadBaclground.setSize(Vector2f(1400.f, 767.f));
 	for (int i = 0; i < size_Load; i++)
 	{
-		convert_str2int = to_string(i + 1);
-		T_Load[i].loadFromFile("../../assets/Day/MainMenu/loading_0" + convert_str2int + ".png");
+		T_Load[i].loadFromFile("../../assets/Day/MainMenu/loading_0" + to_string(i + 1) + ".png");
 		R_Load[i].setTexture(&T_Load[i]);
 		R_Load[i].setSize(Vector2f(615.f, 160.f));
 		R_Load[i].setPosition(Vector2f(380.f, 565.f));
@@ -24,24 +23,30 @@ void Loading::display(RenderWindow& window)
 	window.draw(R_LoadBaclground);
 }
 
-void Loading::display_Loading(RenderWindow& window)
+void Loading::display_Loading(RenderWindow& window, bool& click_loading)
 {
 	static int Load = 0;
 	if (Load == size_Load)
 	{
+		click_loading = true;
 		loading_end = false;
 		Load = 9;
 	}
 	window.draw(R_Load[Load]);
 	if (loading_end)
 	{
-		Load++;
-		while (CurrentFrame <= 5)
+		if (CurrentFrame > 20)
+		{
+			Load++;
+			CurrentFrame = 0;
+		}
+		while (CurrentFrame <= 20)
 		{
 			time = float(clock.getElapsedTime().asMicroseconds());
 			clock.restart();
 			time = time / 800;
 			CurrentFrame += float(0.05) * time;
+			return;
 		}
 		CurrentFrame = 0;
 	}

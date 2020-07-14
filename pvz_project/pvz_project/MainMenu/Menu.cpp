@@ -1,5 +1,7 @@
 #include "Menu.h"
 
+int Menu::number_players;
+
 void Menu::initialization_BackGround()
 {
 	T_Menu.loadFromFile("../../assets/Day/MainMenu/MainMenu.png");
@@ -10,48 +12,48 @@ void Menu::initialization_BackGround()
 void Menu::initialization_btnStart()
 {
 	T_StartAdventure.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_StartAdventure_Button1.png");
-	T_StartAdventure_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_StartAdventure_Highlight.png");
 	R_StartAdventure.setTexture(&T_StartAdventure);
-	R_StartAdventure_hover.setTexture(&T_StartAdventure_hover);
 	R_StartAdventure.setSize(Vector2f(600.f, 166.f));
-	R_StartAdventure_hover.setSize(Vector2f(600.f, 166.f));
 	R_StartAdventure.setPosition(Vector2f(695.f, 80.f));
+	T_StartAdventure_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_StartAdventure_Highlight.png");
+	R_StartAdventure_hover.setTexture(&T_StartAdventure_hover);
+	R_StartAdventure_hover.setSize(Vector2f(600.f, 166.f));
 	R_StartAdventure_hover.setPosition(Vector2f(695.f, 80.f));
 }
 
 void Menu::initialization_btnMiniGanes()
 {
 	T_MiniGames.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Survival_button.png");
-	T_MiniGames_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Survival_highlight.png");
 	R_MiniGames.setTexture(&T_MiniGames);
-	R_MiniGames_hover.setTexture(&T_MiniGames_hover);
 	R_MiniGames.setSize(Vector2f(570.f, 166.f));
-	R_MiniGames_hover.setSize(Vector2f(570.f, 166.f));
 	R_MiniGames.setPosition(Vector2f(700.f, 200.f));
+	T_MiniGames_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Survival_highlight.png");
+	R_MiniGames_hover.setTexture(&T_MiniGames_hover);
+	R_MiniGames_hover.setSize(Vector2f(570.f, 166.f));
 	R_MiniGames_hover.setPosition(Vector2f(700.f, 200.f));
 }
 
 void Menu::initialization_btnPuzzel()
 {
 	T_Puzzle.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Challenges_button.png");
-	T_Puzzle_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Challenges_highlight.png");
 	R_Puzzle.setTexture(&T_Puzzle);
-	R_Puzzle_hover.setTexture(&T_Puzzle_hover);
 	R_Puzzle.setSize(Vector2f(520.f, 166.f));
-	R_Puzzle_hover.setSize(Vector2f(520.f, 166.f));
 	R_Puzzle.setPosition(Vector2f(710.f, 310.f));
+	T_Puzzle_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Challenges_highlight.png");
+	R_Puzzle_hover.setTexture(&T_Puzzle_hover);
+	R_Puzzle_hover.setSize(Vector2f(520.f, 166.f));
 	R_Puzzle_hover.setPosition(Vector2f(710.f, 310.f));
 }
 
 void Menu::initialization_btnSurvival()
 {
 	T_Survival.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_Vasebreaker_button.png");
-	T_Survival_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_vasebreaker_highlight.png");
 	R_Survival.setTexture(&T_Survival);
-	R_Survival_hover.setTexture(&T_Survival_hover);
 	R_Survival.setSize(Vector2f(455.f, 166.f));
-	R_Survival_hover.setSize(Vector2f(455.f, 166.f));
 	R_Survival.setPosition(Vector2f(715.f, 410.f));
+	T_Survival_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_vasebreaker_highlight.png");
+	R_Survival_hover.setTexture(&T_Survival_hover);
+	R_Survival_hover.setSize(Vector2f(455.f, 166.f));
 	R_Survival_hover.setPosition(Vector2f(715.f, 410.f));
 }
 
@@ -162,6 +164,64 @@ void Menu::initialization_MessageHelp()
 	R_MessageHelp.setSize(Vector2f(1400.f, 767.f));
 }
 
+void Menu::initialization_Hand()
+{
+	max_hand = 6;
+	T_Hand = new Texture[max_hand];
+	S_Hand = new Sprite[max_hand];
+	for (int i = 0; i < max_hand; i++)
+	{
+		T_Hand[i].loadFromFile("../../assets/Day/MainMenu/hand" + to_string(i + 1) + ".png");
+		S_Hand[i].setTexture(T_Hand[i]);
+		S_Hand[i].setPosition(Vector2f(510.f, 450.f));
+	}
+}
+
+void Menu::initialization_ScreenName()
+{
+	T_Name.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_WoodSign1.png");
+	R_Name.setTexture(&T_Name);
+	R_Name.setSize(Vector2f(393.f, 200.f));
+	R_Name.setPosition(Vector2f(50.f, 0.f));
+}
+
+void Menu::initialization_ChooseName()
+{
+	T_ChooseName.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_WoodSign2.png");
+	R_ChooseName.setTexture(&T_ChooseName);
+	R_ChooseName.setSize(Vector2f(391.f, 121.f));
+	R_ChooseName.setPosition(Vector2f(50.f, 180.f));
+
+	T_ChooseName_hover.loadFromFile("../../assets/Day/MainMenu/SelectorScreen_WoodSign2_press.png");
+	R_ChooseName_hover.setTexture(&T_ChooseName_hover);
+	R_ChooseName_hover.setSize(Vector2f(391.f, 121.f));
+	R_ChooseName_hover.setPosition(Vector2f(50.f, 180.f));
+}
+
+void Menu::initialization_NewUser()
+{
+	T_NewUser.loadFromFile("../../assets/Day/MainMenu/Plants-vs-Zombies_enter_the_nickname_357t_burned_burned.png");
+	R_NewUser.setTexture(&T_NewUser);
+	R_NewUser.setSize(Vector2f(699.f, 400.f));
+	R_NewUser.setPosition(Vector2f(350.f, 190.f));
+}
+
+void Menu::initialization_ListName()
+{
+	T_ListName.loadFromFile("../../assets/Day/MainMenu/ListName.png");
+	R_ListName.setTexture(&T_ListName);
+	R_ListName.setSize(Vector2f(840, 620));
+	R_ListName.setPosition(Vector2f(300.f, 80.f));
+
+	font_ListName.loadFromFile("../../assets/Font/LHANDW.ttf");
+	txt_CreateNewPlayer.setFont(font_ListName);
+	txt_CreateNewPlayer.setString("Create a New User");
+	txt_CreateNewPlayer.Bold;
+	txt_CreateNewPlayer.setFillColor(Color::White);
+	txt_CreateNewPlayer.setPosition(Vector2f(590.f, 255.f));
+	txt_CreateNewPlayer.setScale(Vector2f(0.8f, 0.8f));
+}
+
 void Menu::MouseMoved_Mainbtn(RenderWindow& window, Event& event)
 {
 	if (Event::MouseMoved)
@@ -224,6 +284,26 @@ void Menu::MouseMoved_MessageQuit(RenderWindow& window, Event& event)
 	}
 }
 
+void Menu::MouseMoved_ChooseName(RenderWindow& window, Event& event)
+{
+	if (Event::MouseMoved)
+	{
+		if ((event.mouseMove.x >= 80 && event.mouseMove.x <= 421) && (event.mouseMove.y >= 185 && event.mouseMove.y <= 240))
+			window.draw(R_ChooseName_hover);
+	}
+}
+
+void Menu::MouseMoved_CreateNewPlayer(RenderWindow& window, Event& event)
+{
+	if (Event::MouseMoved)
+	{
+		if ((event.mouseMove.x >= 590 && event.mouseMove.x <= 840) && (event.mouseMove.y >= 255 && event.mouseMove.y <= 277))
+			txt_CreateNewPlayer.setFillColor(Color::Yellow);
+		else
+			txt_CreateNewPlayer.setFillColor(Color::White);
+	}
+}
+
 bool Menu::MousePressed_btnQuit(RenderWindow& window)
 {
 	mouseposition = Mouse::getPosition(window);
@@ -263,7 +343,7 @@ bool Menu::MousePressed_btnHelp(RenderWindow& window)
 		if ((mouseposition.x >= 1140 && mouseposition.x <= 1200) && (mouseposition.y >= 655 && mouseposition.y <= 690))
 		{
 			ispressed_vaseHelp = true;
-			return ispressed_vaseQuit;
+			return ispressed_vaseHelp;
 		}
 	return ispressed_vaseHelp;
 }
@@ -274,6 +354,63 @@ void Menu::MousePressed_btnMainMenuHelp(RenderWindow& window)
 	if (Mouse::isButtonPressed(Mouse::Left))
 		if ((mouseposition.x >= 570 && mouseposition.x <= 835) && (mouseposition.y >= 665 && mouseposition.y <= 710))
 			ispressed_vaseHelp = false;
+}
+
+bool Menu::MousePressed_btnSartGame(RenderWindow& window, bool& is_pressed)
+{
+
+	mouseposition = Mouse::getPosition(window);
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		if ((mouseposition.x >= 695 && mouseposition.x <= 1270) && (mouseposition.y >= 85 && mouseposition.y <= 210))
+		{
+			is_pressed = false;
+			return is_pressed;
+		}
+		else
+		{
+			is_pressed = true;
+			return is_pressed;
+		}
+	}
+	else
+	{
+		is_pressed = true;
+		return is_pressed;
+	}
+}
+
+void Menu::MousePressed_btnCancel_NewUser(RenderWindow& window)
+{
+	mouseposition = Mouse::getPosition(window);
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		if ((mouseposition.x >= 718 && mouseposition.x <= 990) && (mouseposition.y >= 500 && mouseposition.y <= 540))
+		{
+			ispressed_CreatNewPlayer = false;
+			ispressedMessageNew_User = false;
+		}
+	}
+}
+
+void Menu::MousePressed_btnOk_NewUser(RenderWindow& window)
+{
+	mouseposition = Mouse::getPosition(window);
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		if ((mouseposition.x >= 400 && mouseposition.x <= 680) && (mouseposition.y >= 500 && mouseposition.y <= 540))
+			window.clear();
+	}
+}
+
+void Menu::MousePressed_CreateNewPlayer(RenderWindow& window)
+{
+	mouseposition = Mouse::getPosition(window);
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		if ((mouseposition.x >= 590 && mouseposition.x <= 840) && (mouseposition.y >= 255 && mouseposition.y <= 277))
+			ispressed_CreatNewPlayer = true;
+	}
 }
 
 void Menu::display_Mainbtn(RenderWindow& window)
@@ -307,10 +444,48 @@ void Menu::display_txtMessageQuit(RenderWindow& window)
 	window.draw(txt_MessageQuit_3);
 }
 
+void Menu::display_ScreenName(RenderWindow& window)
+{
+	window.draw(R_Name);
+}
+
+void Menu::display_ChooseName(RenderWindow& window)
+{
+	window.draw(R_ChooseName);
+}
+
+void Menu::text_enter(Event& event, RenderWindow& window)
+{
+	bool test = true;
+	while (test)
+	{
+		font_NamePlayer.loadFromFile("../../assets/Font/LHANDW.ttf");
+		txt_NamePLayer.setFont(font_NamePlayer);
+		txt_NamePLayer.setFillColor(Color::White);
+		txt_NamePLayer.setScale(Vector2f(0.5f, 0.5f));
+		txt_NamePLayer.setPosition(Vector2f(360.f, 230.f));
+		if (event.type == Event::KeyReleased)
+		{
+			if (event.text.unicode >= 32 && event.text.unicode <= 126)
+			{
+				Name_player += (char)event.text.unicode;
+			}
+			else if (event.text.unicode == 8 && Name_player.size() > 0)
+				Name_player.erase(Name_player.size() - 1, Name_player.size());
+			txt_NamePLayer.setString(Name_player);
+		}
+		test = false;
+		cout << Name_player << endl;
+	}
+}
+
 Menu::Menu()
 {
+	number_players = 0;
 	ispressed_vaseQuit = false;
 	ispressed_vaseHelp = false;
+	ispressedMessageNew_User = false;
+	ispressed_CreatNewPlayer = false;
 
 	initialization_BackGround();
 	initialization_btnStart();
@@ -327,35 +502,80 @@ Menu::Menu()
 	initialization_txtMessageQuit();
 	initialization_txtMessageBox();
 	initialization_MessageHelp();
+	initialization_Hand();
+	initialization_ScreenName();
+	initialization_ChooseName();
+	initialization_NewUser();
+	initialization_ListName();
 }
 
-void Menu::display_MainMenu(RenderWindow& window,Event& event)
+
+
+void Menu::display_MainMenu(RenderWindow& window, Event& event, bool& is_pressedStart)
 {
 	window.draw(R_Menu);
 	display_Mainbtn(window);
 	display_Vasebtn(window);
-	MousePressed_btnQuit(window);
-	MousePressed_btnCancel(window);
-	if (!ispressed_vaseQuit)
+	display_ScreenName(window);
+	display_ChooseName(window);
+
+	if (!ispressed_vaseQuit && is_pressedStart && !ispressedMessageNew_User)
 	{
 		MouseMoved_Mainbtn(window, event);
 		MouseMoved_Vasebtn(window, event);
+		MouseMoved_ChooseName(window, event);
+		if (!ispressed_vaseHelp)
+		{
+			MousePressed_btnQuit(window);
+			MousePressed_btnHelp(window);
+		}
 	}
 	if (ispressed_vaseQuit)
 	{
 		display_MessageQuit(window);
+		display_txtMessageQuit(window);
 		MouseMoved_MessageCancel(window, event);
 		MouseMoved_MessageQuit(window, event);
-		display_txtMessageQuit(window);
+		MousePressed_btnCancel(window);
+		MousePressed_btnMessageQuit(window);
 	}
-
-	MousePressed_btnMessageQuit(window);
-	MousePressed_btnHelp(window);
-	MousePressed_btnMainMenuHelp(window);
 
 	if (ispressed_vaseHelp)
 	{
 		window.clear();
 		window.draw(R_MessageHelp);
+		MousePressed_btnMainMenuHelp(window);
 	}
+	if (is_pressedStart)
+	{
+		if (!ispressed_vaseHelp && !ispressed_vaseQuit)
+			is_pressedStart = MousePressed_btnSartGame(window, is_pressedStart);
+	}
+
+	if ((number_players == 0 && !is_pressedStart) || (number_players == 0 && ispressedMessageNew_User))
+	{
+		MousePressed_CreateNewPlayer(window);
+		ispressedMessageNew_User = true;
+		if (ispressed_CreatNewPlayer)
+		{
+			text_enter(event, window);
+			MousePressed_btnCancel_NewUser(window);
+			MousePressed_btnOk_NewUser(window);
+			window.draw(R_ListName);
+			window.draw(R_NewUser);
+			window.draw(txt_NamePLayer);
+		}
+		else
+		{
+			is_pressedStart = true;
+			window.draw(R_ListName);
+			window.draw(txt_CreateNewPlayer);
+			MouseMoved_CreateNewPlayer(window, event);
+		}
+	}
+}
+
+void Menu::display_Hand(RenderWindow& window, int i)
+{
+	window.draw(S_Hand[i]);
 }

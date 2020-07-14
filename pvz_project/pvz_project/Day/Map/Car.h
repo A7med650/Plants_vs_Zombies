@@ -11,6 +11,13 @@ private:
 	//Sprites
 	Sprite S_car[5];
 	//FloatRect
+	//member functions
+	/*------------------------------------------------*/
+	//initialization
+	void initialization_Car();
+	//display
+	void display_Car(RenderWindow& window);
+	/*------------------------------------------------*/
 public:
 	//Constructors
 	Car();

@@ -26,7 +26,7 @@ public:
 	Loading();
 	//member functions
 	void display(RenderWindow& window);
-	void display_Loading(RenderWindow& window);
+	void display_Loading(RenderWindow& window, bool& click_loading);
 	bool button_click_start(RenderWindow& window);
 	//Destructor
 };
